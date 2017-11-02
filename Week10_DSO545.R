@@ -127,3 +127,58 @@ body <- str_sub(strin = emails,
 cat(metadata)
 cat(body)
 
+#1
+
+fruit <- c("apple", "banana", "pear", "pineapple")
+
+#2
+
+str_detect(fruit, "a")
+
+str_detect(fruit , pattern = "^a") #^ if it starts with an a
+
+str_detect(fruit, pattern = "a$")  #$ if it ends with an a
+
+str_detect(fruit, "[aeiou]")
+
+str_detect(fruit, "[a-d]")
+
+# detect a string that starts with "a" and ends with "e"
+
+#3 normally returns apple
+str_detect(fruit, pattern = "^a[a-z]*e$")
+
+#4
+
+phone <- "213 740 4826"
+
+parser <- "[0-9]{3} [0-9]{3} [0-9]{4}"
+
+str_detect(phone, parser)
+
+phone1 <- c("213 740 4826", "213-740-4826")
+parser1 <- "[0-9]{3}[ -][0-9]{3}[ -][0-9]{4}"
+str_detect(phone1, parser1)
+
+phone2 <- c("213 740 4826", "213-740-4826", "213.456.4567")
+parser2 <- "[0-9]{3}[ -.][0-9]{3}[ -.][0-9]{4}"
+str_detect(phone2, parser2)
+
+phone3 <- c("213 740 4826", "213-740-4826", "213.456.4567", "(213) 740-4826")
+parser3 <- "[(]?[0-9]{3}[)]?[ -.][0-9]{3}[ -.][0-9]{4}"
+str_detect(phone3, parser3)
+
+#5 \\b ends the text
+
+cat(body[10])
+cat(body[18])    
+
+str_extract(string = body, pattern = parser)
+
+#6
+zipcode = c("90028", "90028-0809")
+
+zipcodeparser <- "[0-9]{5}[-[0-9]{4}]?"
+
+str_detect(zipcode, zipcodeparser)
+
